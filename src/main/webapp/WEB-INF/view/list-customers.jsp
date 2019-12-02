@@ -7,6 +7,8 @@
 <head>
 <meta charset="UTF-8">
 <title>List Customers</title>
+<link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/style.css " />
+<link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/add-customer-style" />
 </head>
 <body>
 
