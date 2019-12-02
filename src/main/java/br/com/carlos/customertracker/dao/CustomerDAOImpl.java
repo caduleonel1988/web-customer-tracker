@@ -1,0 +1,36 @@
+package br.com.carlos.customertracker.dao;
+
+import java.util.Collections;
+import java.util.List;
+
+import javax.transaction.Transactional;
+
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
+
+import br.com.carlos.customertracker.entities.Customer;
+
+@Repository
+public class CustomerDAOImpl implements CustomerDAO {
+
+	// inject the session factory
+	@Autowired
+	private SessionFactory sessionFactory;
+	
+	@Override
+	@Transactional
+	public List<Customer> getCustomers() {
+		
+		// get the current hibernate session
+		Session currentSession = sessionFactory.getCurrentSession();
+		
+		// create and execute a query to get a customers list
+		List<Customer> customers = currentSession.createQuery("from Customer", Customer.class).getResultList();
+		
+		// return the results as an unmodifiable list
+		return Collections.unmodifiableList(customers);
+	}
+
+}
