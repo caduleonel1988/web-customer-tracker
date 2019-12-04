@@ -30,7 +30,8 @@ input {
 
 table {   
 	border-style:none;
-	width:50%;
+	width:10%;
+	font-family: Tahoma,Verdana,Segoe,sans-serif;
 }
 
 tr:nth-child(even) {background: #FFFFFF}
