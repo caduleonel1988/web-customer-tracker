@@ -15,23 +15,35 @@ import br.com.carlos.customertracker.model.service.CustomerService;
 
 @Controller
 @RequestMapping(value = "/customer")
-@Scope(value=WebApplicationContext.SCOPE_REQUEST)
+@Scope(value = WebApplicationContext.SCOPE_REQUEST)
 public class CustomerController {
 
 	// inject the customer service
 	@Autowired
 	private CustomerService customerService;
-	
+
 	@GetMapping(value = "/list")
 	public String listCustomers(Model model) {
-		
+
 		// get customers from the service layer
 		List<Customer> customers = customerService.getCustomers();
-		
+
 		// add the customers to the model
 		model.addAttribute("customers", customers);
-		
+
 		return "list-customers";
 
+	}
+
+	@GetMapping(value = "/addCustomerForm")
+	public String showAddCustomerForm(Model model) {
+		
+		// model attribute to bind form data
+		Customer customer = new Customer();
+		
+		// add the attribute to the model
+		model.addAttribute("customer", customer);
+		
+		return "customer-form";
 	}
 }
