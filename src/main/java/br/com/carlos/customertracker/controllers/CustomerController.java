@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.context.WebApplicationContext;
 
 import br.com.carlos.customertracker.entities.Customer;
@@ -57,4 +58,17 @@ public class CustomerController {
 		
 		return "redirect:/customer/list";
 	}
+	
+	@GetMapping(value="updateCustomerForm")
+	public String showUpdateCustomerForm(@RequestParam("customerId") long id, Model model) {
+		
+		// get the customer from database
+		Customer customer = customerService.getCustomer(id);
+		
+		// set customer as a model attribute to pre-populate the form
+		model.addAttribute("customer", customer);
+		
+		return "customer-form";
+	}
+	
 }
