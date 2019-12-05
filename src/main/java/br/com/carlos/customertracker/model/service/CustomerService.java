@@ -7,5 +7,7 @@ import br.com.carlos.customertracker.entities.Customer;
 public interface CustomerService {
 
 	public List<Customer> getCustomers();
+
+	public void saveCustomer(Customer customer);
 	
 }
