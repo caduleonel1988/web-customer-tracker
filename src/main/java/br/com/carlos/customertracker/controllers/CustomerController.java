@@ -7,6 +7,8 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.context.WebApplicationContext;
 
@@ -45,5 +47,14 @@ public class CustomerController {
 		model.addAttribute("customer", customer);
 		
 		return "customer-form";
+	}
+	
+	@PostMapping(value="/saveCustomer")
+	public String saveCustomer(@ModelAttribute(name="customer") Customer customer) {
+		
+		// save the customer using the service
+		customerService.saveCustomer(customer);
+		
+		return "redirect:/customer/list";
 	}
 }
