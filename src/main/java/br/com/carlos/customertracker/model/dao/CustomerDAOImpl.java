@@ -30,4 +30,11 @@ public class CustomerDAOImpl implements CustomerDAO {
 		return Collections.unmodifiableList(customers);
 	}
 
+	@Override
+	public void saveCustomer(Customer customer) {
+		
+		// save the customer using the session
+		sessionFactory.getCurrentSession().save(customer);
+	}
+
 }
