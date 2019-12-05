@@ -35,16 +35,24 @@
 						<th>Fist Name</th>
 						<th>Last Name</th>
 						<th>Email</th>
+						<th>Action</th>
 					</tr>
 				</thead>
 				
 				<tbody>
 					
 					<c:forEach items="${customers}" var="customer">
+						
+						<!-- Construct an update link with customer id -->
+						<c:url var="updateCustomer" value="/customer/updateCustomerForm">
+						
+							<c:param name="customerId" value="${customer.id}" />
+						</c:url>
 						<tr>
 							<td>${customer.firstName}</td> 	
 							<td>${customer.lastName}</td> 	
 							<td>${customer.email}</td> 	
+							<td><a href="${updateCustomer }">Update</a></td> 	
 						</tr>
 					</c:forEach>
 					
