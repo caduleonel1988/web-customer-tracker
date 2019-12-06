@@ -44,15 +44,22 @@
 					<c:forEach items="${customers}" var="customer">
 						
 						<!-- Construct an update link with customer id -->
-						<c:url var="updateCustomer" value="/customer/updateCustomerForm">
-						
+						<c:url var="updateCustomer" value="/customer/updateCustomerForm" >
 							<c:param name="customerId" value="${customer.id}" />
-						</c:url>
+						</c:url>	
+						<c:url var="deleteCustomer" value="/customer/deleteCustomer" >
+							<c:param name="customerId" value="${customer.id}" />
+						</c:url>	
+						
+						
 						<tr>
 							<td>${customer.firstName}</td> 	
 							<td>${customer.lastName}</td> 	
 							<td>${customer.email}</td> 	
-							<td><a href="${updateCustomer }">Update</a></td> 	
+							<td><a href="${updateCustomer }">Update</a>
+								|<a href="${deleteCustomer}"
+									onclick="return confirm('Are you sure you want to delete this customer');">Delete</a>
+							</td> 	
 						</tr>
 					</c:forEach>
 					
