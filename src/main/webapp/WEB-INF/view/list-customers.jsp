@@ -7,8 +7,26 @@
 <head>
 <meta charset="UTF-8">
 <title>List Customers</title>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/jquery.js"></script>
 <link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/style.css " />
 <link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/add-customer-style" />
+	<script >
+	
+			function remove(id, element) {
+				$.ajax({
+				    url: "/web-customer-tracker/customer/deleteCustomer",
+				    method: "POST",
+				    data: {customerId: id},				
+				    datatype: "json",
+				    success: deleted(element)
+				});
+			}
+				function deleted(element) {
+					$(element).closest("tr").hide();
+					alert("Cliente removido do sistema ");
+				}
+				
+	</script>
 </head>
 <body>
 
@@ -47,18 +65,14 @@
 						<c:url var="updateCustomer" value="/customer/updateCustomerForm" >
 							<c:param name="customerId" value="${customer.id}" />
 						</c:url>	
-						<c:url var="deleteCustomer" value="/customer/deleteCustomer" >
-							<c:param name="customerId" value="${customer.id}" />
-						</c:url>	
-						
 						
 						<tr>
 							<td>${customer.firstName}</td> 	
 							<td>${customer.lastName}</td> 	
 							<td>${customer.email}</td> 	
 							<td><a href="${updateCustomer }">Update</a>
-								|<a href="${deleteCustomer}"
-									onclick="return confirm('Are you sure you want to delete this customer');">Delete</a>
+								|<a href="#"
+									onclick="if (confirm('Are you sure you want to delete this customer?')) remove(${customer.id}, this);">Delete</a>
 							</td> 	
 						</tr>
 					</c:forEach>
