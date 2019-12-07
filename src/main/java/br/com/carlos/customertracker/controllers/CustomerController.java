@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.context.WebApplicationContext;
 
 import br.com.carlos.customertracker.entities.Customer;
@@ -59,8 +60,8 @@ public class CustomerController {
 		return "redirect:/customer/list";
 	}
 	
-	@GetMapping(value="updateCustomerForm")
-	public String showUpdateCustomerForm(@RequestParam("customerId") long id, Model model) {
+	@GetMapping(value="/updateCustomerForm")
+	public String showUpdateCustomerForm(@RequestParam(name="customerId") long id, Model model) {
 		
 		// get the customer from database
 		Customer customer = customerService.getCustomer(id);
@@ -69,6 +70,14 @@ public class CustomerController {
 		model.addAttribute("customer", customer);
 		
 		return "customer-form";
+	}
+	
+	@PostMapping(value="/deleteCustomer")
+	@ResponseBody
+	public void deleteCustomer(@RequestParam(name="customerId") long id) {
+		
+		// delete the customer
+		customerService.deleteCustomer(id);
 	}
 	
 }
