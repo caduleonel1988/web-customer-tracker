@@ -71,18 +71,32 @@
 			<version>5.2.1.RELEASE</version>
 		</dependency>
 
-		<!-- Spring Framework - TX-->
+		<!-- Spring Framework - TX -->
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-tx</artifactId>
 			<version>5.2.1.RELEASE</version>
 		</dependency>
 
-		<!-- Spring Framework - ORM-->
+		<!-- Spring Framework - ORM -->
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-orm</artifactId>
 			<version>5.2.1.RELEASE</version>
+		</dependency>
+
+		<!-- Spring AOP -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-aop</artifactId>
+			<version>5.2.1.RELEASE</version>
+		</dependency>
+
+		<!-- AspectJ for AOP Programming -->
+		<dependency>
+			<groupId>org.aspectj</groupId>
+			<artifactId>aspectjweaver</artifactId>
+			<version>1.9.5</version>
 		</dependency>
 
 		<!-- Hibernate - Core -->
@@ -91,13 +105,15 @@
 			<artifactId>hibernate-core</artifactId>
 			<version>5.4.9.Final</version>
 		</dependency>
-
+		
 		<!-- C3P0 Connection Pooling -->
 		<dependency>
 			<groupId>com.mchange</groupId>
 			<artifactId>c3p0</artifactId>
 			<version>0.9.5.2</version>
 		</dependency>
+
+
 
 
 	</dependencies>
